@@ -14,6 +14,9 @@ int pattern = 0;
 
 using namespace std;
 
+// Function to create the spaces for the flower sections and in between the curly braces, the function takes in the number of sections, and runs a for loop to 
+// create the spaces
+
 void air_filler(int air)
 {
   int space;
@@ -24,7 +27,7 @@ void air_filler(int air)
   }
 }
 
-// void head_maker()
+// Function to create the ASCII flower, it takes in the number of sections (flower heads) the user wants, and produces the flower.
 
 void flower_maker(int sections)
 {
@@ -32,14 +35,17 @@ void flower_maker(int sections)
   {
     for (int heads = 0, decrease = 0, increase = 4, test_decrease = 1, colons_counter = 3; heads < index + 1; heads++, decrease++, increase += 2, test_decrease++, colons_counter++)
     {
+        // Increases the space between the curly braces, decreases the space on the left
       air_filler(sections - decrease);
       cout << "{" << setw(increase) << right << setfill(':') << "}" << endl;
+        // checks when inner loop ran as many times as the outer loop, used to produce the main part of the section
       if (heads == index)
       {
         air_filler(sections - (decrease + 1));
         cout << "{" << setw(colons_counter) << right << setfill(':') << "@" << setw(colons_counter) << right << setfill(':') << "}" << endl;
         for (int counter = heads + 1, reverse_decrease = decrease, reverse_increase = increase; counter > 0; counter--, reverse_increase -= 2, reverse_decrease--)
         {
+            // Creates the bottom half of the section after creating the main section
           air_filler(sections - (reverse_decrease));
           cout << "{" << setw(reverse_increase) << right << setfill(':') << "}" << endl;
         }
@@ -50,6 +56,8 @@ void flower_maker(int sections)
   }
 }
 
+// This function is used to create the stem of the ASCII Flower, it takes in the number of sections to determine the length of the flower, and uses the length to 
+// create an alternating pattern within the stem
 void stem_maker(int sections)
 {
   for (int length = sections * 2, count = 1; length > 0; length--, count++)
